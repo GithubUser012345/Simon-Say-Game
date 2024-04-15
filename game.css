@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+body{
+    background-color: rgba(0, 0, 0, 0.8);
+}
+h1{
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+h3{
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
+}
+.box{
+    height: 200px;
+    width: 200px;
+    border: 2px solid white;
+    margin: 10px;
+    border-radius: 30px;
+}
+.row1{
+    display: flex;
+    justify-content: center;
+}
+.row2{
+    display: flex;
+    justify-content: center;
+}
+.green{
+    background-color: green;
+}
+.red{
+    background-color: red;
+}
+.yellow{
+    background-color: yellow;
+}
+.blue{
+    background-color: blue;
+}
+.btnStart{
+    padding: 10px;
+    margin: 30px;
+    border-radius: 10px;
+    width: 25vw;
+    font-size: 1.05rem;
+    background-color: rgb(229, 9, 20);
+}
+.flash{
+    background-color: white;
+    border: 2px solid black;
+}
+.hide{
+    display: none;
+}
