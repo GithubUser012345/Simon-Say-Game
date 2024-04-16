@@ -1,12 +1,14 @@
+let body = document.querySelector("body");
+body.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+let track = document.querySelector("#highScore");
 let btnStart = document.querySelector(".btnStart");
-let btn = document.querySelector(".btn");
-
-let h3 = document.querySelector("h3");
+let description = document.querySelector(".description");
 let start = false;
 let level = 0;
 let buttons = ["green", "red", "yellow", "blue"];
 let userSeq = [];
 let gameSeq = [];
+let highScore = [];
 
 let hides = document.querySelectorAll(".hide");
 
@@ -17,16 +19,16 @@ btnStart.addEventListener("click", function(){
         for(hide of hides){
             hide.classList.remove("hide");
         }
-        btn.classList.add("hide");
     }
 
     setTimeout(levelUp, 1000);
+    btnStart.classList.add("hide");
 });
 
 function levelUp(){
     userSeq = [];
     level++;
-    h3.innerText = `Level ${level}`;
+    description.innerText = `Level ${level}`;
     randomColor();
 }
 
@@ -34,14 +36,13 @@ function flash(btn){
     btn.classList.add("flash");
     setTimeout(function(){
         btn.classList.remove("flash");
-    },500);
+    },250);
 }
 
 let boxes = document.querySelectorAll(".box");
 for(box of boxes){
     box.addEventListener("click", function(){
         let btn = this;
-        console.log(this);
         let userColor = this.getAttribute("id");
         userSeq.push(userColor);
         flash(btn);
@@ -49,14 +50,32 @@ for(box of boxes){
     });
 }
 
+function reset(){
+    start = false;
+    level = 0;
+    userSeq = [];
+    gameSeq = [];
+    btnStart.classList.remove("hide");
+    btnStart.innerText = "RESET";
+    btnStart.style.backgroundColor = "rgb(48, 161, 80)";
+}
+
 function check(idx){
     if(gameSeq[idx] === userSeq[idx]){
         if(gameSeq.length === userSeq.length){
-            setTimeout(levelUp, 1000);
+            setTimeout(levelUp, 500);
         }
     }
     else{
-        h3.innerText = `Game Over! Your Score : ${level}`;
+        description.innerHTML = `Game Over! Your Score : <b>${level}</b> <br> Press RESET button to play again `;
+        body.style.backgroundColor = "rgb(229, 9, 20);";
+        setTimeout(function(){
+            body.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+        }, 250);
+        highScore.push(level);
+        let value = Math.max(...highScore);
+        track.innerText = `High Score : ${value}`;
+        reset();
     }
 }
 
